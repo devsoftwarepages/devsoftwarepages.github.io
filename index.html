@@ -1,160 +1,139 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev_Software | Portfolyo</title>
+    <title>Dev_Software | Premium Apps</title>
     <style>
         :root {
-            --bg: #ffffff;
-            --text: #1d1d1f;
-            --subtext: #86868b;
-            --accent: #0071e3;
-            --card-bg: #f5f5f7;
-            --nav-bg: rgba(255, 255, 255, 0.8);
-            --border: rgba(0,0,0,0.05);
-        }
-
-        [data-theme='dark'] {
             --bg: #000000;
-            --text: #f5f5f7;
-            --subtext: #a1a1a6;
             --card-bg: #1c1c1e;
-            --nav-bg: rgba(0, 0, 0, 0.8);
-            --border: rgba(255,255,255,0.1);
+            --text: #ffffff;
+            --subtext: #8e8e93;
+            --accent: #0071e3;
+            --nav-bg: rgba(0, 0, 0, 0.7);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif; }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-            transition: background 0.3s ease;
-        }
+        body { background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
         /* Navigasyon */
         nav {
-            position: fixed; top: 0; width: 100%; height: 52px;
+            position: fixed; top: 0; width: 100%; height: 60px;
             background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             z-index: 1000; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 12%; border-bottom: 1px solid var(--border);
+            padding: 0 8%; border-bottom: 0.5px solid rgba(255,255,255,0.1);
         }
 
-        .logo { font-size: 19px; font-weight: 600; letter-spacing: -0.5px; }
+        .logo-area { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 20px; }
+        .logo-circle { width: 30px; height: 30px; background: linear-gradient(135deg, #0071e3, #00d4ff); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
 
-        .nav-links { display: flex; gap: 25px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--text); font-size: 12px; opacity: 0.8; font-weight: 400; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { text-decoration: none; color: var(--text); font-size: 14px; opacity: 0.7; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; }
 
-        /* Hero Alanı */
+        /* Hero Section */
         .hero {
-            padding: 140px 20px 60px;
+            padding: 160px 20px 80px;
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 56px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.07;
-            margin-bottom: 20px;
+            font-size: 52px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1;
+            margin-bottom: 25px; background: linear-gradient(to bottom, #fff 60%, #888);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 21px; color: var(--subtext); line-height: 1.38;
-            max-width: 600px; margin: 0 auto 35px; font-weight: 500;
+            font-size: 20px; color: var(--subtext); line-height: 1.4;
+            max-width: 600px; margin: 0 auto 40px;
         }
 
-        .btn-blue {
+        .cta-button {
             background: var(--accent); color: white;
-            padding: 12px 24px; border-radius: 980px;
-            text-decoration: none; font-size: 17px; font-weight: 400;
+            padding: 14px 30px; border-radius: 980px;
+            text-decoration: none; font-size: 17px; font-weight: 500;
             display: inline-block; transition: 0.3s;
         }
+        .cta-button:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0,113,227,0.4); }
 
-        /* Uygulama Kartları */
-        .grid-container { padding: 40px 12% 100px; }
-        .grid-title { font-size: 40px; font-weight: 700; margin-bottom: 40px; text-align: center; }
+        /* Neden Seçmelisiniz Section (Arvinapp Birebir) */
+        .features { padding: 40px 8%; text-align: center; }
+        .features h2 { font-size: 36px; margin-bottom: 50px; }
 
-        .app-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;
+        .feature-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;
         }
 
-        .app-card {
-            background: var(--card-bg); border-radius: 22px; padding: 45px 30px;
-            text-align: left; transition: 0.4s ease;
-            border: 1px solid var(--border);
+        .feature-card {
+            background: var(--card-bg); border-radius: 24px; padding: 50px 30px;
+            transition: 0.3s; border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .tagline { color: var(--accent); font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 10px; display: block; }
-        .app-card h3 { font-size: 26px; font-weight: 600; margin-bottom: 12px; }
-        .app-card p { color: var(--subtext); font-size: 16px; line-height: 1.5; }
+        .feature-card h3 { font-size: 24px; margin-bottom: 15px; font-weight: 600; }
+        .feature-card p { color: var(--subtext); font-size: 16px; line-height: 1.6; }
 
-        /* Dark Mode Button */
-        #theme-toggle { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--text); }
-
-        footer { text-align: center; padding: 60px 0; color: var(--subtext); font-size: 13px; }
+        /* Footer */
+        footer {
+            padding: 80px 20px; text-align: center;
+            border-top: 0.5px solid rgba(255,255,255,0.1);
+            color: var(--subtext); font-size: 14px; margin-top: 50px;
+        }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 40px; }
-            nav { padding: 0 5%; }
+            .hero h1 { font-size: 38px; }
             .nav-links { display: none; }
+            nav { padding: 0 5%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">Dev_Software</div>
-        <div class="nav-links">
-            <a href="#apps">Apps</a>
-            <a href="#">About</a>
-            <a href="#">Privacy</a>
-            <button id="theme-toggle">🌙</button>
+        <div class="logo-area">
+            <div class="logo-circle">D</div>
+            <span>Dev_Software</span>
         </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Apps</a>
+            <a href="#">Privacy</a>
+            <a href="#">Contact</a>
+        </div>
+        <div style="font-size: 18px;">☀️</div>
     </nav>
 
     <section class="hero">
-        <h1>Crafting Seamless<br>Software Solutions.</h1>
-        <p>I build intuitive, high-performance applications designed to simplify your life and solve real-world problems.</p>
-        <a href="#apps" class="btn-blue">Explore My Apps</a>
+        <h1>Crafting Seamless<br>Mobile Experiences.</h1>
+        <p>I build intuitive, high-performance applications designed to simplify your life and connect you to what matters most.</p>
+        <a href="#" class="cta-button">Explore My Apps</a>
     </section>
 
-    <div class="grid-container" id="apps">
-        <h2 class="grid-title">My Latest Apps</h2>
-        <div class="app-grid">
-            <div class="app-card">
-                <span class="tagline">Productivity</span>
-                <h3>Focus Flow</h3>
-                <p>A minimal task manager designed to keep you focused on what truly matters, without the noise.</p>
+    <section class="features">
+        <h2>Why Choose My Apps?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Unparalleled User Experience</h3>
+                <p>Every app is meticulously designed for simplicity and elegance, ensuring a delightful and effortless interaction for all users.</p>
             </div>
-            <div class="app-card">
-                <span class="tagline">Lifestyle</span>
-                <h3>Daily Pulse</h3>
-                <p>Track your habits and health metrics in one beautiful, private dashboard.</p>
+            <div class="feature-card">
+                <h3>Powerful & Practical Solutions</h3>
+                <p>I focus on delivering robust, real-world tools that seamlessly integrate into your daily routine, boosting productivity and convenience.</p>
             </div>
-            <div class="app-card">
-                <span class="tagline">Utility</span>
-                <h3>Quick Scan</h3>
-                <p>Lightning fast document scanning with AI-powered text recognition and cloud sync.</p>
+            <div class="feature-card">
+                <h3>Commitment to Innovation</h3>
+                <p>Driven by user feedback and emerging technologies, I continuously refine and evolve my applications to stay at the forefront of development.</p>
             </div>
         </div>
-    </div>
+    </section>
 
     <footer>
-        © 2026 Dev_Software. Built for the future.
+        <p>© 2026 Dev_Software. All rights reserved.</p>
     </footer>
-
-    <script>
-        const btn = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        let isDark = false;
-
-        btn.addEventListener('click', () => {
-            isDark = !isDark;
-            html.setAttribute('data-theme', isDark ? 'dark' : 'light');
-            btn.innerHTML = isDark ? '☀️' : '🌙';
-        });
-    </script>
 
 </body>
 </html>

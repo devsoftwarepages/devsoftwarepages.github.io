@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps | Dev Software</title>
+    <style>
+        :root {
+            --bg: #000000; --card-bg: #1c1c1e; --text: #ffffff; --subtext: #8e8e93; --accent: #0071e3;
+            --nav-bg: rgba(28, 28, 30, 0.85); --coming-soon: #ff9f0a;
+        }
+        [data-theme="light"] {
+            --bg: #ffffff; --card-bg: #f5f5f7; --text: #1d1d1f; --subtext: #86868b;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); transition: background 0.3s ease; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; min-height: 100px;
+            background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 1000; padding: 15px 0; border-bottom: 0.5px solid rgba(128,128,128,0.1);
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .nav-top { width: 100%; display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 12px; }
+        .brand-area { display: flex; align-items: center; gap: 10px; }
+        .logo-text { font-size: 22px; font-weight: 600; }
+        .nav-logo { width: 32px; height: 32px; animation: rotateLogo 10s linear infinite; }
+        @keyframes rotateLogo { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .theme-btn-area { position: absolute; right: 20px; }
+        #theme-toggle { cursor: pointer; font-size: 22px; border: none; background: none; color: var(--text); }
+        .nav-links { display: flex; gap: 18px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text); font-size: 15px; opacity: 0.7; }
+        .nav-links a.active { opacity: 1; font-weight: 600; color: var(--accent); }
+
+        /* Header */
+        .apps-header { padding: 160px 20px 40px; text-align: center; }
+        .apps-header h1 { font-size: 36px; margin-bottom: 10px; }
+        .apps-header p { color: var(--subtext); font-size: 18px; }
+
+        /* Apps Grid */
+        .apps-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; 
+            padding: 40px 8% 100px; 
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
+        .app-card { 
+            background: var(--card-bg); 
+            border-radius: 24px; 
+            padding: 30px; 
+            border: 1px solid rgba(128,128,128,0.1);
+            text-align: center;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .app-card:hover { transform: scale(1.02); border-color: var(--accent); }
+        
+        .app-icon { 
+            width: 80px; height: 80px; 
+            background: linear-gradient(135deg, #2c2c2e, #3a3a3c);
+            border-radius: 18px; margin: 0 auto 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .status-badge {
+            position: absolute; top: 15px; right: 15px;
+            background: var(--coming-soon); color: #000;
+            padding: 4px 12px; border-radius: 20px;
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+        }
+
+        .app-card h3 { margin-bottom: 12px; font-size: 22px; }
+        .app-card p { color: var(--subtext); font-size: 15px; line-height: 1.5; margin-bottom: 25px; min-height: 45px; }
+
+        .play-store-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #2c2c2e; color: #8e8e93;
+            padding: 12px 24px; border-radius: 12px;
+            text-decoration: none; font-weight: 500; font-size: 14px;
+            cursor: not-allowed; border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer { padding: 50px; text-align: center; color: var(--subtext); font-size: 13px; border-top: 0.5px solid rgba(128,128,128,0.1); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-top">
+            <div class="brand-area">
+                <img src="logo.png" class="nav-logo" alt="Logo">
+                <span class="logo-text">Dev Software</span>
+            </div>
+            <div class="theme-btn-area"><button id="theme-toggle">☼</button></div>
+        </div>
+        <div class="nav-bottom">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="apps.html" class="active">Apps</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="apps-header">
+        <h1>Discover My Apps</h1>
+        <p>Innovative tools built for efficiency and simplicity.</p>
+    </header>
+
+    <div class="apps-grid">
+        <div class="app-card">
+            <span class="status-badge">Soon</span>
+            <div class="app-icon">📄</div>
+            <h3>PDF Reader</h3>
+            <p>A lightweight and fast PDF viewer designed for seamless reading and document management.</p>
+            <div class="play-store-btn">
+                <span>Coming Soon on Google Play</span>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <span class="status-badge">Soon</span>
+            <div class="app-icon">🎓</div>
+            <h3>BEP Hazırlama</h3>
+            <p>A specialized tool for educators to prepare Individualized Education Programs quickly and easily.</p>
+            <div class="play-store-btn">
+                <span>Coming Soon on Google Play</span>
+            </div>
+        </div>
+    </div>
+
+    <footer><p>© 2026 Dev Software. All rights reserved.</p></footer>
+
+    <script>
+        const btn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        btn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            btn.innerHTML = newTheme === 'dark' ? '☼' : '☾';
+        });
+    </script>
+</body>
+</html>

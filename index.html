@@ -2,188 +2,122 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Dev Software | Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dev Software</title>
+
+<meta name="description" content="Dev Software – Independent mobile app developer. Clean, offline-first, privacy-friendly Android apps.">
 
 <style>
-:root {
-    --bg:#000; --card-bg:#1c1c1e; --text:#fff; --subtext:#8e8e93; --accent:#0071e3;
-    --nav-bg:rgba(28,28,30,.85);
+:root{
+--bg:#000;--card:#1c1c1e;--text:#fff;--sub:#8e8e93;--accent:#0071e3;
+--nav:rgba(28,28,30,.85)
 }
-[data-theme="light"] {
-    --bg:#fff; --card-bg:#f5f5f7; --text:#1d1d1f; --subtext:#86868b;
-    --nav-bg:rgba(255,255,255,.9);
+[data-theme="light"]{
+--bg:#fff;--card:#f5f5f7;--text:#1d1d1f;--sub:#86868b;
+--nav:rgba(255,255,255,.9)
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif}
-body{background:var(--bg);color:var(--text);overflow-x:hidden;transition:.3s}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+body{background:var(--bg);color:var(--text);transition:.3s}
+a{text-decoration:none;color:inherit}
 
-/* NAV */
 nav{
-    position:fixed;top:0;width:100%;min-height:100px;
-    background:var(--nav-bg);backdrop-filter:blur(20px);
-    border-bottom:.5px solid rgba(128,128,128,.1);
-    display:flex;flex-direction:column;align-items:center;z-index:1000
+position:fixed;top:0;width:100%;z-index:10;
+background:var(--nav);backdrop-filter:blur(20px);
+border-bottom:.5px solid rgba(255,255,255,.08);
+padding:14px 0
 }
-.nav-top{width:100%;display:flex;justify-content:center;align-items:center;position:relative;padding:0 20px 10px}
-.brand-area{display:flex;align-items:center;gap:10px}
-.logo-text{font-size:22px;font-weight:600}
-.nav-logo{width:32px;height:32px;animation:spin 10s linear infinite}
+.nav-wrap{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:20px}
+.brand img{width:32px;animation:spin 12s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.theme-btn-area{position:absolute;right:20px}
-#theme-toggle{background:none;border:none;color:var(--text);font-size:22px;cursor:pointer}
-.nav-links{display:flex;gap:18px;list-style:none}
-.nav-links a{text-decoration:none;color:var(--text);opacity:.7;font-size:15px;cursor:pointer}
-.nav-links a.active{opacity:1;color:var(--accent);font-weight:600}
-.nav-links a:hover{opacity:1}
 
-/* PAGE */
-.page{display:none}
-.page.active-page{display:block}
+.links a{margin-left:18px;font-size:14px;opacity:.7}
+.links a:hover{opacity:1;color:var(--accent)}
+#theme{background:none;border:none;font-size:20px;color:var(--text);cursor:pointer}
 
-/* FOOTER */
-footer{padding:50px;text-align:center;color:var(--subtext);font-size:13px;border-top:.5px solid rgba(128,128,128,.1)}
+section{max-width:1100px;margin:auto;padding:140px 20px}
+.hero{text-align:center;padding-top:160px}
+.hero h1{font-size:42px;margin-bottom:15px}
+.hero p{color:var(--sub);font-size:18px;max-width:600px;margin:auto}
 
-/* HOME */
-.hero{padding:180px 20px 60px;text-align:center;max-width:800px;margin:auto}
-.hero h1{font-size:48px;font-weight:700;margin-bottom:20px}
-.hero p{font-size:20px;color:var(--subtext);margin-bottom:35px}
-.btn-primary{background:var(--accent);color:#fff;padding:14px 32px;border-radius:999px;text-decoration:none}
-.features{padding:40px 8% 100px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.card{background:var(--card-bg);border-radius:20px;padding:35px 25px;border:1px solid rgba(128,128,128,.1)}
-.card p{color:var(--subtext)}
-
-/* ABOUT */
-.about-hero{padding:160px 20px 40px;text-align:center}
-.profile-img{width:140px;height:140px;border-radius:50%;border:3px solid var(--accent);margin-top:20px}
-.about-content{max-width:650px;margin:auto;text-align:center;padding:20px}
-.about-content p{color:var(--subtext);font-size:17px}
-.skills-section{padding:20px 8% 80px}
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.skill-card{background:var(--card-bg);border-radius:20px;padding:30px;text-align:center;border:1px solid rgba(128,128,128,.1)}
-.skill-card h4{color:var(--accent)}
-
-/* CONTACT */
-.contact-container{padding:160px 20px 100px;max-width:900px;margin:auto;text-align:center}
-.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.contact-card{
-    background:var(--card-bg);border-radius:24px;padding:40px 20px;
-    border:1px solid rgba(128,128,128,.1);text-decoration:none;color:var(--text)
+.card{
+background:var(--card);border-radius:26px;
+padding:35px;border:1px solid rgba(255,255,255,.08)
 }
-.contact-card:hover{border-color:var(--accent);transform:translateY(-6px)}
-.icon-circle{width:70px;height:70px;border-radius:50%;background:rgba(128,128,128,.05);
-display:flex;align-items:center;justify-content:center;margin:auto}
-.play-store-img{width:40px}
 
-@media(max-width:480px){
-.hero h1{font-size:36px}
-}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
+
+footer{text-align:center;color:var(--sub);padding:60px 20px;font-size:13px}
 </style>
 </head>
 
 <body>
 
 <nav>
-<div class="nav-top">
-    <div class="brand-area">
-        <img src="logo.png" class="nav-logo">
-        <span class="logo-text">Dev Software</span>
-    </div>
-    <div class="theme-btn-area"><button id="theme-toggle">☼</button></div>
+<div class="nav-wrap">
+<div class="brand">
+<img src="logo.png" alt="logo">
+<span>Dev Software</span>
 </div>
-<div class="nav-links">
-    <a data-page="home" class="active">Home</a>
-    <a data-page="about">About</a>
-    <a href="apps.html">Apps</a>
-    <a data-page="contact">Contact</a>
+<div class="links">
+<a href="#about">About</a>
+<a href="apps.html">Apps</a>
+<a href="#contact">Contact</a>
+<button id="theme">☼</button>
+</div>
 </div>
 </nav>
 
-<!-- HOME -->
-<div id="home" class="page active-page">
 <section class="hero">
-<h1>Crafting Seamless<br>Mobile Experiences</h1>
-<p>High-performance Android applications focused on simplicity and speed.</p>
-<a href="apps.html" class="btn-primary">Explore Apps</a>
+<h1>Independent App Developer</h1>
+<p>Clean, fast and offline-first Android applications built with simplicity and privacy in mind.</p>
 </section>
 
-<section class="features">
+<section id="about">
 <div class="grid">
-<div class="card"><h3>User Experience</h3><p>Clean, intuitive and minimal UI.</p></div>
-<div class="card"><h3>Performance</h3><p>Optimized for speed and reliability.</p></div>
+<div class="card">
+<h2>Who I Am</h2>
+<p style="color:var(--sub);margin-top:12px">
+I am an independent developer focused on creating useful Android apps that work fully offline, respect user privacy and deliver smooth performance.
+</p>
+</div>
+
+<div class="card">
+<h2>Focus Areas</h2>
+<p style="color:var(--sub);margin-top:12px">
+• Android / Flutter<br>
+• Offline-first apps<br>
+• Simple & clean UI<br>
+• Performance oriented
+</p>
+</div>
 </div>
 </section>
-</div>
 
-<!-- ABOUT -->
-<div id="about" class="page">
-<div class="about-hero">
-<h2>About Dev Software</h2>
-<img src="avatar.png" class="profile-img">
-</div>
-<div class="about-content">
-<p>Independent Android developer creating practical, offline-first and privacy-focused mobile applications.</p>
-</div>
-
-<section class="skills-section">
-<h2 style="text-align:center">Skills</h2>
-<div class="skills-grid">
-<div class="skill-card"><h4>Android</h4><p>Kotlin · Flutter</p></div>
-<div class="skill-card"><h4>Web</h4><p>HTML · CSS · JavaScript</p></div>
-<div class="skill-card"><h4>Tools</h4><p>Firebase · GitHub · Play Console</p></div>
+<section id="contact">
+<div class="card">
+<h2>Contact</h2>
+<p style="color:var(--sub);margin-top:12px">
+For app support or business inquiries:<br><br>
+<b>devsoftwaremail@gmail.com</b>
+</p>
 </div>
 </section>
-</div>
-
-<!-- CONTACT -->
-<div id="contact" class="page">
-<div class="contact-container">
-<h1>Contact</h1>
-<p style="color:var(--subtext)">Questions, feedback or ideas?</p>
-<div class="contact-grid">
-<a class="contact-card" href="mailto:devsoftwaremail@gmail.com">
-<div class="icon-circle">✉️</div>
-<h3>Email</h3>
-<p>devsoftwaremail@gmail.com</p>
-</a>
-
-<a class="contact-card" target="_blank"
-href="https://play.google.com/store/apps/dev?id=5510456285364182790">
-<div class="icon-circle">
-<img src="google-play.png" class="play-store-img">
-</div>
-<h3>Google Play</h3>
-<p>Developer Page</p>
-</a>
-</div>
-</div>
-</div>
 
 <footer>
-<p>© 2026 Dev Software. All rights reserved.</p>
+© 2026 Dev Software. All rights reserved.
 </footer>
 
 <script>
-const btn=document.getElementById("theme-toggle");
 const html=document.documentElement;
-const saved=localStorage.getItem("devsoftware-theme");
-if(saved){html.setAttribute("data-theme",saved)}
+const btn=document.getElementById("theme");
+const saved=localStorage.getItem("dev-theme");
+if(saved){html.dataset.theme=saved;btn.textContent=saved==="dark"?"☼":"☾"}
 btn.onclick=()=>{
-const t=html.getAttribute("data-theme")==="dark"?"light":"dark";
-html.setAttribute("data-theme",t);
-localStorage.setItem("devsoftware-theme",t);
+const t=html.dataset.theme==="dark"?"light":"dark";
+html.dataset.theme=t;btn.textContent=t==="dark"?"☼":"☾";
+localStorage.setItem("dev-theme",t);
 };
-
-const pages=document.querySelectorAll(".page");
-const links=document.querySelectorAll(".nav-links a[data-page]");
-function show(id){
-pages.forEach(p=>p.classList.remove("active-page"));
-document.getElementById(id).classList.add("active-page");
-links.forEach(l=>l.classList.toggle("active",l.dataset.page===id));
-window.scrollTo(0,0);
-}
-links.forEach(l=>l.onclick=e=>{e.preventDefault();show(l.dataset.page);location.hash=l.dataset.page});
-if(location.hash) show(location.hash.substring(1));
 </script>
 
 </body>

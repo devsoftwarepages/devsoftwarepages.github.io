@@ -14,9 +14,9 @@
             --nav-bg: rgba(255, 255, 255, 0.9);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif; }
-        body { background-color: var(--bg); color: var(--text); transition: background 0.3s ease; }
+        body { background-color: var(--bg); color: var(--text); transition: background 0.3s ease; overflow-x: hidden; }
 
-        /* Navigation Style */
+        /* Navigation */
         nav {
             position: fixed; top: 0; width: 100%; min-height: 100px;
             background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -31,22 +31,92 @@
         .theme-btn-area { position: absolute; right: 20px; }
         #theme-toggle { cursor: pointer; font-size: 22px; border: none; background: none; color: var(--text); }
         .nav-links { display: flex; gap: 18px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text); font-size: 15px; opacity: 0.7; transition: 0.3s; }
+        .nav-links a { text-decoration: none; color: var(--text); font-size: 15px; opacity: 0.7; transition: 0.3s; cursor: pointer; }
         .nav-links a.active { opacity: 1; font-weight: 600; color: var(--accent); }
         .nav-links a:hover { opacity: 1; }
 
-        /* Content Area */
+        /* Page Container */
+        .page { display: none; }
+        .page.active-page { display: block; }
+
+        /* Footer */
+        footer { padding: 50px; text-align: center; color: var(--subtext); font-size: 13px; border-top: 0.5px solid rgba(128,128,128,0.1); margin-top: 40px; }
+
+        /* ========== INDEX (HOME) ========== */
         .hero { padding: 180px 20px 60px; text-align: center; max-width: 800px; margin: 0 auto; }
         .hero h1 { font-size: 48px; font-weight: 700; margin-bottom: 20px; }
         .hero p { font-size: 20px; color: var(--subtext); margin-bottom: 35px; }
-        .btn-primary { background: var(--accent); color: white; padding: 14px 32px; border-radius: 980px; text-decoration: none; font-weight: 500; display: inline-block; }
-        
+        .btn-primary { background: var(--accent); color: white; padding: 14px 32px; border-radius: 980px; text-decoration: none; font-weight: 500; display: inline-block; border: none; cursor: pointer; }
         .features { padding: 40px 8% 100px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .card { background: var(--card-bg); border-radius: 20px; padding: 35px 25px; border: 1px solid rgba(128,128,128,0.1); }
         .card h3 { margin-bottom: 10px; }
         .card p { color: var(--subtext); line-height: 1.5; }
-        footer { padding: 50px; text-align: center; color: var(--subtext); font-size: 13px; }
+
+        /* ========== ABOUT ========== */
+        .about-hero { padding: 160px 20px 40px; text-align: center; }
+        .profile-container { position: relative; display: inline-block; margin-top: 20px; }
+        .profile-img { 
+            width: 140px; height: 140px; border-radius: 50%; 
+            border: 3px solid var(--accent); object-fit: cover;
+            box-shadow: 0 0 20px rgba(0, 113, 227, 0.2);
+        }
+        .about-content { max-width: 650px; margin: 0 auto; padding: 20px; text-align: center; }
+        .about-content h2 { font-size: 32px; font-weight: 700; margin-bottom: 15px; }
+        .about-content p { color: var(--subtext); line-height: 1.6; font-size: 17px; margin-bottom: 40px; }
+        .skills-section { padding: 20px 8% 80px; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 28px; font-weight: 700; }
+        .skills-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .skill-card { 
+            background: var(--card-bg); border-radius: 20px; padding: 30px; 
+            text-align: center; border: 1px solid rgba(128,128,128,0.1);
+            transition: 0.3s ease;
+        }
+        .skill-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .skill-card h4 { margin-bottom: 12px; font-size: 20px; color: var(--accent); font-weight: 600; }
+        .skill-card p { color: var(--subtext); font-size: 15px; line-height: 1.5; }
+
+        /* ========== PRIVACY ========== */
+        .container { max-width: 800px; margin: 0 auto; padding: 160px 20px 100px; }
+        .policy-box { background: var(--card-bg); padding: 40px; border-radius: 24px; border: 1px solid rgba(128,128,128,0.1); }
+        .policy-box h1 { font-size: 36px; margin-bottom: 10px; font-weight: 700; }
+        .last-update { color: var(--accent); font-weight: 500; margin-bottom: 30px; display: block; }
+        .policy-box h2 { font-size: 20px; margin: 30px 0 10px; color: var(--text); font-weight: 600; }
+        .policy-box p, .policy-box li { color: var(--subtext); font-size: 16px; margin-bottom: 15px; }
+        .policy-box ul { padding-left: 20px; }
+
+        /* ========== CONTACT ========== */
+        .contact-container { padding: 160px 20px 100px; max-width: 900px; margin: 0 auto; text-align: center; }
+        .contact-container h1 { font-size: 42px; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
+        .description { color: var(--subtext); font-size: 19px; margin-bottom: 50px; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .contact-card {
+            background: var(--card-bg); border-radius: 24px; padding: 40px 20px;
+            border: 1px solid rgba(128,128,128,0.1); text-decoration: none;
+            color: var(--text); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column; align-items: center; gap: 15px;
+        }
+        .contact-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .icon-circle {
+            width: 70px; height: 70px; border-radius: 50%; background: rgba(128,128,128,0.05);
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .play-store-img { width: 40px; height: 40px; object-fit: contain; }
+        .contact-card h3 { font-size: 19px; font-weight: 600; margin-top: 5px; }
+        .contact-card p { color: var(--subtext); font-size: 14px; word-break: break-all; }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 36px; }
+            .about-content h2 { font-size: 28px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .policy-box { padding: 25px; }
+        }
     </style>
 </head>
 <body>
@@ -60,27 +130,106 @@
         </div>
         <div class="nav-bottom">
             <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="about.html">About</a>
+                <a data-page="home" class="active">Home</a>
+                <a data-page="about">About</a>
                 <a href="apps.html">Apps</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="contact.html">Contact</a>
+                <a data-page="privacy">Privacy</a>
+                <a data-page="contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1>Crafting Seamless<br>Mobile Experiences.</h1>
-        <p>Building high-performance applications designed to simplify your digital life.</p>
-        <a href="apps.html" class="btn-primary">Explore My Apps</a>
-    </section>
+    <!-- HOME PAGE -->
+    <div id="home" class="page active-page">
+        <section class="hero">
+            <h1>Crafting Seamless<br>Mobile Experiences.</h1>
+            <p>Building high-performance applications designed to simplify your digital life.</p>
+            <a href="apps.html" class="btn-primary">Explore My Apps</a>
+        </section>
+        <section class="features">
+            <div class="grid">
+                <div class="card"><h3>User Experience</h3><p>Meticulously designed for simplicity and elegance.</p></div>
+                <div class="card"><h3>Innovation</h3><p>Continuously evolving with the latest technologies.</p></div>
+            </div>
+        </section>
+    </div>
 
-    <section class="features">
-        <div class="grid">
-            <div class="card"><h3>User Experience</h3><p>Meticulously designed for simplicity and elegance.</p></div>
-            <div class="card"><h3>Innovation</h3><p>Continuously evolving with the latest technologies.</p></div>
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+        <div class="about-hero">
+            <h2 style="font-size: 36px; font-weight: 700;">About Dev Software</h2>
+            <div class="profile-container">
+                <img src="avatar.png" class="profile-img" alt="Developer Profile">
+            </div>
         </div>
-    </section>
+        <section class="about-content">
+            <h2>My Journey in Mobile</h2>
+            <p>I am a dedicated mobile app developer focused on bridging the gap between elegant design and high-performance code. With a deep passion for technology, I build solutions that empower users and solve real-world problems through mobile innovation.</p>
+        </section>
+        <section class="skills-section">
+            <h2 class="section-title">My Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card"><h4>Web Foundation</h4><p>HTML5, CSS3, Modern JavaScript (ES6+)</p></div>
+                <div class="skill-card"><h4>Mobile Development</h4><p>Flutter (Dart), Native Kotlin (Android)</p></div>
+                <div class="skill-card"><h4>Hybrid & PWA</h4><p>Capacitor, Progressive Web Apps (PWA)</p></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PRIVACY PAGE -->
+    <div id="privacy" class="page">
+        <div class="container">
+            <div class="policy-box">
+                <h1>Privacy Policy</h1>
+                <span class="last-update">Effective Date: February 14, 2026</span>
+                <p>Welcome to <strong>Dev Software</strong>. We respect your privacy and are committed to protecting the personal data of our users. This Privacy Policy explains how we handle information in our mobile applications and services.</p>
+                <h2>1. Information We (Don't) Collect</h2>
+                <p>Most of our applications are designed to function <strong>offline</strong> and do not require you to create an account. For these apps:</p>
+                <ul><li>We do not collect personal information (name, email, phone number).</li><li>Data you enter into the app is stored locally on your device and is not transmitted to our servers.</li></ul>
+                <h2>2. Permissions</h2>
+                <p>Our apps may request certain device permissions to function correctly, such as:</p>
+                <ul><li><strong>Storage:</strong> To read or save files (like PDF documents).</li><li><strong>Camera:</strong> Only if required for the app's core feature (e.g., scanning).</li></ul>
+                <p>You can revoke these permissions at any time through your device settings.</p>
+                <h2>3. Third-Party Services</h2>
+                <p>We may use third-party tools (like Google Play Services) for app stability and performance monitoring. These services may collect information used to identify your device type and crash logs to help us improve the software.</p>
+                <h2>4. Data Security</h2>
+                <p>Since most of your data is stored locally on your device, its security depends on your device's security measures. We recommend keeping your operating system updated.</p>
+                <h2>5. Children's Privacy</h2>
+                <p>Our applications do not knowingly collect any personal identifiable information from children under 13. If you are a parent and think your child provided us with information, please contact us immediately.</p>
+                <h2>6. Changes to This Policy</h2>
+                <p>We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. Changes are effective immediately after they are posted on this page.</p>
+                <h2>7. Contact Us</h2>
+                <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at our contact page.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <div class="contact-container">
+            <h1>Get in Touch</h1>
+            <p class="description">Have a question or a project idea? I'd love to hear from you.</p>
+            <div class="contact-grid">
+                <a href="mailto:devsoftwaremail@gmail.com" class="contact-card" target="_blank">
+                    <div class="icon-circle"><span style="font-size: 30px;">✉️</span></div>
+                    <h3>Email</h3>
+                    <p>devsoftwaremail@gmail.com</p>
+                </a>
+                <a href="https://play.google.com/store/apps/dev?id=5510456285364182790" target="_blank" class="contact-card">
+                    <div class="icon-circle">
+                        <img src="google-play.png" class="play-store-img" alt="Google Play Store">
+                    </div>
+                    <h3>Google Play</h3>
+                    <p>Developer Page</p>
+                </a>
+                <a href="https://devsoftwarepages.github.io/Dev-Software/index.html" target="_blank" class="contact-card">
+                    <div class="icon-circle"><span style="font-size: 30px;">🌐</span></div>
+                    <h3>Web Site</h3>
+                    <p>Official Developer Site</p>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <footer><p>© 2026 Dev Software. All rights reserved.</p></footer>
 
@@ -93,6 +242,49 @@
             html.setAttribute('data-theme', newTheme);
             btn.innerHTML = newTheme === 'dark' ? '☼' : '☾';
         });
+
+        // Sayfa geçişleri
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-links a[data-page]');
+        
+        function showPage(pageId) {
+            pages.forEach(p => p.classList.remove('active-page'));
+            document.getElementById(pageId).classList.add('active-page');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('data-page');
+                if (linkPage === pageId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+                window.location.hash = pageId;
+            });
+        });
+
+        function checkHash() {
+            const hash = window.location.hash.substring(1);
+            if (hash && ['home','about','privacy','contact'].includes(hash)) {
+                showPage(hash);
+            } else {
+                showPage('home');
+            }
+        }
+        window.addEventListener('hashchange', checkHash);
+        if (!window.location.hash) {
+            window.location.hash = 'home';
+        } else {
+            checkHash();
+        }
     </script>
 </body>
 </html>

@@ -2,156 +2,130 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Apps | Dev Software</title>
 
 <style>
-:root {
-    --bg:#000; --card-bg:#1c1c1e; --text:#fff; --subtext:#8e8e93;
-    --accent:#0071e3; --nav-bg:rgba(28,28,30,.85); --soon:#ff9f0a;
+:root{
+--bg:#000;--card:#1c1c1e;--text:#fff;--sub:#8e8e93;--accent:#0071e3;
+--nav:rgba(28,28,30,.85);--soon:#ff9f0a
 }
 [data-theme="light"]{
-    --bg:#fff; --card-bg:#f5f5f7; --text:#1d1d1f; --subtext:#86868b;
-    --nav-bg:rgba(255,255,255,.9);
+--bg:#fff;--card:#f5f5f7;--text:#1d1d1f;--sub:#86868b;
+--nav:rgba(255,255,255,.9)
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
 body{background:var(--bg);color:var(--text);transition:.3s}
 
-/* NAV (index.html ile birebir) */
 nav{
-    position:fixed;top:0;width:100%;min-height:100px;
-    background:var(--nav-bg);backdrop-filter:blur(20px);
-    border-bottom:.5px solid rgba(128,128,128,.1);
-    display:flex;flex-direction:column;align-items:center;z-index:1000
+position:fixed;top:0;width:100%;z-index:10;
+background:var(--nav);backdrop-filter:blur(20px);
+border-bottom:.5px solid rgba(255,255,255,.08);
+padding:14px 0
 }
-.nav-top{width:100%;display:flex;justify-content:center;align-items:center;position:relative;padding:0 20px 10px}
-.brand-area{display:flex;align-items:center;gap:10px}
-.logo-text{font-size:22px;font-weight:600}
-.nav-logo{width:32px;height:32px;animation:spin 10s linear infinite}
+.nav-wrap{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:20px}
+.brand img{width:32px;animation:spin 12s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.theme-btn-area{position:absolute;right:20px}
-#theme-toggle{background:none;border:none;color:var(--text);font-size:22px;cursor:pointer}
-.nav-links{display:flex;gap:18px;list-style:none}
-.nav-links a{text-decoration:none;color:var(--text);opacity:.7;font-size:15px}
-.nav-links a.active{opacity:1;color:var(--accent);font-weight:600}
-.nav-links a:hover{opacity:1}
+.links a{margin-left:18px;font-size:14px;opacity:.7;text-decoration:none;color:inherit}
+.links a.active{opacity:1;color:var(--accent)}
+#theme{background:none;border:none;font-size:20px;color:var(--text);cursor:pointer}
 
-/* HEADER */
-.apps-header{padding:170px 20px 40px;text-align:center}
-.apps-header h1{font-size:42px;margin-bottom:10px}
-.apps-header p{color:var(--subtext);font-size:18px}
+header{text-align:center;padding:160px 20px 40px}
+header h1{font-size:36px}
+header p{color:var(--sub);font-size:18px;margin-top:10px}
 
-/* GRID */
-.apps-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:25px;
-    padding:40px 8% 100px;
-    max-width:1200px;
-    margin:auto
+.grid{
+max-width:1100px;margin:auto;
+display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;padding:40px 20px 100px
 }
-.app-card{
-    background:var(--card-bg);
-    border-radius:24px;
-    padding:30px;
-    border:1px solid rgba(128,128,128,.1);
-    text-align:center;
-    position:relative;
-    transition:.35s cubic-bezier(.4,0,.2,1)
+.card{
+background:var(--card);border-radius:26px;
+padding:30px;text-align:center;
+border:1px solid rgba(255,255,255,.08);
+position:relative
 }
-.app-card:hover{transform:translateY(-6px);border-color:var(--accent)}
-.app-icon{
-    width:82px;height:82px;margin:0 auto 20px;
-    border-radius:20px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:40px;
-    background:linear-gradient(135deg,#2c2c2e,#3a3a3c);
-    box-shadow:0 15px 30px rgba(0,0,0,.35)
+.badge{
+position:absolute;top:14px;right:14px;
+background:var(--soon);color:#000;
+font-size:11px;font-weight:700;
+padding:4px 10px;border-radius:14px
 }
-.status-badge{
-    position:absolute;top:15px;right:15px;
-    background:var(--soon);color:#000;
-    padding:4px 12px;border-radius:20px;
-    font-size:11px;font-weight:700;letter-spacing:.5px
+.icon{
+width:80px;height:80px;border-radius:20px;
+margin:auto;margin-bottom:18px;
+display:flex;align-items:center;justify-content:center;
+font-size:38px;background:linear-gradient(135deg,#2c2c2e,#3a3a3c)
 }
-.app-card h3{font-size:22px;margin-bottom:12px}
-.app-card p{color:var(--subtext);font-size:15px;line-height:1.5;margin-bottom:25px;min-height:48px}
-.store-btn{
-    display:inline-flex;align-items:center;gap:8px;
-    background:#2c2c2e;color:#8e8e93;
-    padding:12px 24px;border-radius:12px;
-    font-size:14px;border:1px solid rgba(255,255,255,.05);
-    cursor:not-allowed
+.card p{color:var(--sub);margin-top:10px}
+.store{
+margin-top:22px;
+display:inline-block;
+padding:12px 20px;
+border-radius:12px;
+background:#2c2c2e;
+color:#8e8e93;font-size:14px
 }
 
-/* FOOTER */
-footer{
-    padding:50px;text-align:center;
-    color:var(--subtext);font-size:13px;
-    border-top:.5px solid rgba(128,128,128,.1)
-}
+footer{text-align:center;color:var(--sub);padding:60px 20px;font-size:13px}
 </style>
 </head>
 
 <body>
 
 <nav>
-<div class="nav-top">
-    <div class="brand-area">
-        <img src="logo.png" class="nav-logo">
-        <span class="logo-text">Dev Software</span>
-    </div>
-    <div class="theme-btn-area">
-        <button id="theme-toggle">☼</button>
-    </div>
+<div class="nav-wrap">
+<div class="brand">
+<img src="logo.png">
+<span>Dev Software</span>
 </div>
-<div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="index.html#about">About</a>
-    <a href="apps.html" class="active">Apps</a>
-    <a href="index.html#contact">Contact</a>
+<div class="links">
+<a href="index.html">Home</a>
+<a href="apps.html" class="active">Apps</a>
+<button id="theme">☼</button>
+</div>
 </div>
 </nav>
 
-<header class="apps-header">
-<h1>Apps</h1>
-<p>Carefully crafted Android applications focused on usability and performance.</p>
+<header>
+<h1>My Applications</h1>
+<p>Offline-first, privacy-friendly Android apps.</p>
 </header>
 
-<section class="apps-grid">
+<div class="grid">
 
-<div class="app-card">
-<span class="status-badge">SOON</span>
-<div class="app-icon">📄</div>
+<div class="card">
+<span class="badge">SOON</span>
+<div class="icon">📄</div>
 <h3>PDF Reader</h3>
-<p>Fast, offline-first PDF reader with clean interface and efficient file management.</p>
-<div class="store-btn">Coming Soon on Google Play</div>
+<p>Fast, lightweight PDF reader designed to work fully offline.</p>
+<div class="store">Coming soon on Google Play</div>
 </div>
 
-<div class="app-card">
-<span class="status-badge">SOON</span>
-<div class="app-icon">🎓</div>
+<div class="card">
+<span class="badge">SOON</span>
+<div class="icon">🎓</div>
 <h3>BEP Hazırlama</h3>
-<p>Designed for educators to prepare individualized education programs quickly and clearly.</p>
-<div class="store-btn">Coming Soon on Google Play</div>
+<p>Educational tool for preparing individualized education programs.</p>
+<div class="store">Coming soon on Google Play</div>
 </div>
 
-</section>
+</div>
 
 <footer>
-<p>© 2026 Dev Software. All rights reserved.</p>
+© 2026 Dev Software
 </footer>
 
 <script>
-const btn=document.getElementById("theme-toggle");
 const html=document.documentElement;
-const saved=localStorage.getItem("devsoftware-theme");
-if(saved) html.setAttribute("data-theme",saved);
-
+const btn=document.getElementById("theme");
+const saved=localStorage.getItem("dev-theme");
+if(saved){html.dataset.theme=saved;btn.textContent=saved==="dark"?"☼":"☾"}
 btn.onclick=()=>{
-const t=html.getAttribute("data-theme")==="dark"?"light":"dark";
-html.setAttribute("data-theme",t);
-localStorage.setItem("devsoftware-theme",t);
+const t=html.dataset.theme==="dark"?"light":"dark";
+html.dataset.theme=t;btn.textContent=t==="dark"?"☼":"☾";
+localStorage.setItem("dev-theme",t);
 };
 </script>
 

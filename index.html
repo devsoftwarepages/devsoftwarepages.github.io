@@ -4,79 +4,96 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Dev Software | Home</title>
+<link rel="shortcut icon" href="logo.png" type="image/x-icon">
+
+<script>
+    const savedTheme = localStorage.getItem("devsoftware-theme");
+    if(savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
+</script>
 
 <style>
 :root {
     --bg:#000; --card-bg:#1c1c1e; --text:#fff; --subtext:#8e8e93; --accent:#0071e3;
-    --nav-bg:rgba(28,28,30,.85);
+    --nav-bg:rgba(28,28,30,.85); --border:rgba(128,128,128,.15);
 }
 [data-theme="light"] {
     --bg:#fff; --card-bg:#f5f5f7; --text:#1d1d1f; --subtext:#86868b;
     --nav-bg:rgba(255,255,255,.9);
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif}
-body{background:var(--bg);color:var(--text);overflow-x:hidden;transition:.3s}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
+body{background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .3s, color .3s}
 
 /* NAV */
 nav{
-    position:fixed;top:0;width:100%;min-height:100px;
-    background:var(--nav-bg);backdrop-filter:blur(20px);
-    border-bottom:.5px solid rgba(128,128,128,.1);
-    display:flex;flex-direction:column;align-items:center;z-index:1000
+    position:fixed;top:0;width:100%;height:110px;
+    background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;
 }
-.nav-top{width:100%;display:flex;justify-content:center;align-items:center;position:relative;padding:0 20px 10px}
-.brand-area{display:flex;align-items:center;gap:10px}
+.nav-top{width:100%;display:flex;justify-content:center;align-items:center;position:relative;margin-bottom:12px}
+.brand-area{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
 .logo-text{font-size:22px;font-weight:600}
-.nav-logo{width:32px;height:32px;animation:spin 10s linear infinite}
+.nav-logo{width:32px;height:32px;animation:spin 12s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.theme-btn-area{position:absolute;right:20px}
-#theme-toggle{background:none;border:none;color:var(--text);font-size:22px;cursor:pointer}
-.nav-links{display:flex;gap:18px;list-style:none}
-.nav-links a{text-decoration:none;color:var(--text);opacity:.7;font-size:15px;cursor:pointer}
-.nav-links a.active{opacity:1;color:var(--accent);font-weight:600}
-.nav-links a:hover{opacity:1}
+.theme-btn-area{position:absolute;right:24px}
+#theme-toggle{background:none;border:none;color:var(--text);font-size:20px;cursor:pointer}
 
-/* PAGE */
-.page{display:none}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);opacity:.6;font-size:15px;cursor:pointer}
+.nav-links a.active{opacity:1;color:var(--accent);font-weight:600}
+
+/* PAGE LOGIC */
+.page{display:none;animation:fadeIn .4s ease}
 .page.active-page{display:block}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* FOOTER */
-footer{padding:50px;text-align:center;color:var(--subtext);font-size:13px;border-top:.5px solid rgba(128,128,128,.1)}
+footer{padding:60px 20px;text-align:center;color:var(--subtext);font-size:13px;border-top:1px solid var(--border)}
 
-/* HOME */
+/* SECTIONS */
 .hero{padding:180px 20px 60px;text-align:center;max-width:800px;margin:auto}
-.hero h1{font-size:48px;font-weight:700;margin-bottom:20px}
-.hero p{font-size:20px;color:var(--subtext);margin-bottom:35px}
-.btn-primary{background:var(--accent);color:#fff;padding:14px 32px;border-radius:999px;text-decoration:none}
-.features{padding:40px 8% 100px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.card{background:var(--card-bg);border-radius:20px;padding:35px 25px;border:1px solid rgba(128,128,128,.1)}
-.card p{color:var(--subtext)}
+.hero h1{font-size:56px;font-weight:700;margin-bottom:20px}
+.hero p{font-size:22px;color:var(--subtext);margin-bottom:40px}
+.btn-primary{background:var(--accent);color:#fff;padding:14px 36px;border-radius:999px;text-decoration:none;font-weight:600}
 
-/* ABOUT */
+.features{padding:40px 8% 100px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card-bg);border-radius:24px;padding:40px 30px;border:1px solid var(--border)}
+
 .about-hero{padding:160px 20px 40px;text-align:center}
-.profile-img{width:140px;height:140px;border-radius:50%;border:3px solid var(--accent);margin-top:20px}
-.about-content{max-width:650px;margin:auto;text-align:center;padding:20px}
-.about-content p{color:var(--subtext);font-size:17px}
-.skills-section{padding:20px 8% 80px}
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.skill-card{background:var(--card-bg);border-radius:20px;padding:30px;text-align:center;border:1px solid rgba(128,128,128,.1)}
-.skill-card h4{color:var(--accent)}
+.profile-img{width:150px;height:150px;border-radius:50%;border:4px solid var(--accent);margin-top:24px}
+.about-content{max-width:600px;margin:auto;text-align:center;padding:0 20px}
+.about-content p{color:var(--subtext);font-size:19px;line-height:1.6}
+
+.skills-section{padding:60px 8% 100px}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.skill-card{background:var(--card-bg);border-radius:20px;padding:30px;text-align:center;border:1px solid var(--border)}
+.skill-card h4{color:var(--accent);margin-bottom:8px}
 
 /* CONTACT */
-.contact-container{padding:160px 20px 100px;max-width:900px;margin:auto;text-align:center}
-.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.contact-container{padding:180px 20px 100px;max-width:900px;margin:auto;text-align:center}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px}
 .contact-card{
-    background:var(--card-bg);border-radius:24px;padding:40px 20px;
-    border:1px solid rgba(128,128,128,.1);text-decoration:none;color:var(--text)
+    background:var(--card-bg);border-radius:24px;padding:40px;
+    border:1px solid var(--border);text-decoration:none;color:var(--text);
+    transition:transform .3s;display:block
 }
-.contact-card:hover{border-color:var(--accent);transform:translateY(-6px)}
-.icon-circle{width:70px;height:70px;border-radius:50%;background:rgba(128,128,128,.05);
-display:flex;align-items:center;justify-content:center;margin:auto}
-.play-store-img{width:40px}
+.contact-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.icon-circle{
+    width:80px;height:80px;border-radius:50%;background:var(--border);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 20px;
+}
 
-@media(max-width:480px){
-.hero h1{font-size:36px}
+/* GÖRSELLER (BÜYÜTÜLDÜ VE FILTRESIZ) */
+.contact-img {
+    width: 48px; /* 36px'den 48px'e çıkarıldı */
+    height: auto;
+    display: block;
+}
+
+@media(max-width:600px){
+    .hero h1{font-size:42px}
+    nav{height:100px}
 }
 </style>
 </head>
@@ -85,10 +102,10 @@ display:flex;align-items:center;justify-content:center;margin:auto}
 
 <nav>
 <div class="nav-top">
-    <div class="brand-area">
+    <a href="#" class="brand-area" onclick="location.reload()">
         <img src="logo.png" class="nav-logo">
         <span class="logo-text">Dev Software</span>
-    </div>
+    </a>
     <div class="theme-btn-area"><button id="theme-toggle">☼</button></div>
 </div>
 <div class="nav-links">
@@ -99,92 +116,85 @@ display:flex;align-items:center;justify-content:center;margin:auto}
 </div>
 </nav>
 
-<!-- HOME -->
 <div id="home" class="page active-page">
-<section class="hero">
-<h1>Crafting Seamless<br>Mobile Experiences</h1>
-<p>High-performance Android applications focused on simplicity and speed.</p>
-<a href="apps.html" class="btn-primary">Explore Apps</a>
-</section>
-
-<section class="features">
-<div class="grid">
-<div class="card"><h3>User Experience</h3><p>Clean, intuitive and minimal UI.</p></div>
-<div class="card"><h3>Performance</h3><p>Optimized for speed and reliability.</p></div>
+    <section class="hero">
+        <h1>Crafting Seamless<br>Mobile Experiences</h1>
+        <p>High-performance Android applications focused on simplicity and speed.</p>
+        <a href="apps.html" class="btn-primary">Explore Apps</a>
+    </section>
+    <section class="features">
+        <div class="grid">
+            <div class="card"><h3>User Experience</h3><p>Clean, intuitive and minimal UI.</p></div>
+            <div class="card"><h3>Performance</h3><p>Optimized for speed and reliability.</p></div>
+        </div>
+    </section>
 </div>
-</section>
-</div>
 
-<!-- ABOUT -->
 <div id="about" class="page">
-<div class="about-hero">
-<h2>About Dev Software</h2>
-<img src="avatar.png" class="profile-img">
-</div>
-<div class="about-content">
-<p>Independent Android developer creating practical, offline-first and privacy-focused mobile applications.</p>
-</div>
-
-<section class="skills-section">
-<h2 style="text-align:center">Skills</h2>
-<div class="skills-grid">
-<div class="skill-card"><h4>Android</h4><p>Kotlin · Flutter</p></div>
-<div class="skill-card"><h4>Web</h4><p>HTML · CSS · JavaScript</p></div>
-<div class="skill-card"><h4>Tools</h4><p>Firebase · GitHub · Play Console</p></div>
-</div>
-</section>
+    <div class="about-hero">
+        <h2>About Dev Software</h2>
+        <img src="avatar.png" class="profile-img">
+    </div>
+    <div class="about-content">
+        <p>Independent Android developer creating practical, offline-first and privacy-focused applications.</p>
+    </div>
+    <section class="skills-section">
+        <div class="skills-grid">
+            <div class="skill-card"><h4>Android</h4><p>Kotlin · Flutter</p></div>
+            <div class="skill-card"><h4>Web</h4><p>HTML · CSS · JS</p></div>
+            <div class="skill-card"><h4>Tools</h4><p>Git · Play Console</p></div>
+        </div>
+    </section>
 </div>
 
-<!-- CONTACT -->
 <div id="contact" class="page">
-<div class="contact-container">
-<h1>Contact</h1>
-<p style="color:var(--subtext)">Questions, feedback or ideas?</p>
-<div class="contact-grid">
-<a class="contact-card" href="mailto:devsoftwaremail@gmail.com">
-<div class="icon-circle">✉️</div>
-<h3>Email</h3>
-<p>devsoftwaremail@gmail.com</p>
-</a>
+    <div class="contact-container">
+        <h1>Contact</h1>
+        <div class="contact-grid">
+            
+            <a class="contact-card" href="mailto:devsoftwaremail@gmail.com">
+                <div class="icon-circle">
+                    <img src="mail.png" class="contact-img">
+                </div>
+                <h3>Email</h3>
+                <p>devsoftwaremail@gmail.com</p>
+            </a>
 
-<a class="contact-card" target="_blank"
-href="https://play.google.com/store/apps/dev?id=5510456285364182790">
-<div class="icon-circle">
-<img src="google-play.png" class="play-store-img">
-</div>
-<h3>Google Play</h3>
-<p>Developer Page</p>
-</a>
-</div>
-</div>
+            <a class="contact-card" target="_blank" href="https://play.google.com/store/apps/dev?id=5510456285364182790">
+                <div class="icon-circle">
+                    <img src="google-play.png" class="contact-img">
+                </div>
+                <h3>Google Play</h3>
+                <p>Developer Page</p>
+            </a>
+
+        </div>
+    </div>
 </div>
 
-<footer>
-<p>© 2026 Dev Software. All rights reserved.</p>
-</footer>
+<footer><p>© 2026 Dev Software. All rights reserved.</p></footer>
 
 <script>
-const btn=document.getElementById("theme-toggle");
-const html=document.documentElement;
-const saved=localStorage.getItem("devsoftware-theme");
-if(saved){html.setAttribute("data-theme",saved)}
-btn.onclick=()=>{
-const t=html.getAttribute("data-theme")==="dark"?"light":"dark";
-html.setAttribute("data-theme",t);
-localStorage.setItem("devsoftware-theme",t);
+const btn = document.getElementById("theme-toggle");
+btn.onclick = () => {
+    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("devsoftware-theme", next);
 };
 
-const pages=document.querySelectorAll(".page");
-const links=document.querySelectorAll(".nav-links a[data-page]");
-function show(id){
-pages.forEach(p=>p.classList.remove("active-page"));
-document.getElementById(id).classList.add("active-page");
-links.forEach(l=>l.classList.toggle("active",l.dataset.page===id));
-window.scrollTo(0,0);
+const pages = document.querySelectorAll(".page");
+const links = document.querySelectorAll(".nav-links a[data-page]");
+function switchPage(id) {
+    pages.forEach(p => p.classList.remove("active-page"));
+    document.getElementById(id).classList.add("active-page");
+    links.forEach(l => l.classList.toggle("active", l.dataset.page === id));
+    window.scrollTo(0,0);
 }
-links.forEach(l=>l.onclick=e=>{e.preventDefault();show(l.dataset.page);location.hash=l.dataset.page});
-if(location.hash) show(location.hash.substring(1));
+links.forEach(l => l.onclick = (e) => { e.preventDefault(); switchPage(l.dataset.page); history.pushState(null,null,'#'+l.dataset.page); });
+window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.substring(1);
+    if(hash && document.getElementById(hash)) switchPage(hash);
+});
 </script>
-
 </body>
 </html>

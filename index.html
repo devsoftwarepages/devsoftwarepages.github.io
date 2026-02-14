@@ -132,7 +132,7 @@
             <div class="nav-links">
                 <a data-page="home" class="active">Home</a>
                 <a data-page="about">About</a>
-                <a href="apps.html">Apps</a>
+                <a href="apps.html" id="apps-link">Apps</a>
                 <a data-page="privacy">Privacy</a>
                 <a data-page="contact">Contact</a>
             </div>
@@ -144,7 +144,7 @@
         <section class="hero">
             <h1>Crafting Seamless<br>Mobile Experiences.</h1>
             <p>Building high-performance applications designed to simplify your digital life.</p>
-            <a href="apps.html" class="btn-primary">Explore My Apps</a>
+            <a href="apps.html" id="explore-apps" class="btn-primary">Explore My Apps</a>
         </section>
         <section class="features">
             <div class="grid">
@@ -234,13 +234,24 @@
     <footer><p>© 2026 Dev Software. All rights reserved.</p></footer>
 
     <script>
+        // Tema yönetimi - localStorage ile kalıcı
         const btn = document.getElementById('theme-toggle');
         const html = document.documentElement;
+        
+        // Kaydedilmiş temayı yükle
+        const savedTheme = localStorage.getItem('devsoftware-theme');
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+            btn.innerHTML = savedTheme === 'dark' ? '☼' : '☾';
+        }
+        
         btn.addEventListener('click', () => {
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
             btn.innerHTML = newTheme === 'dark' ? '☼' : '☾';
+            // Temayı kaydet
+            localStorage.setItem('devsoftware-theme', newTheme);
         });
 
         // Sayfa geçişleri
@@ -269,6 +280,21 @@
                 showPage(pageId);
                 window.location.hash = pageId;
             });
+        });
+
+        // Apps linkine tıklanınca tema localStorage'a kaydedilip apps.html'e yönlendir
+        document.getElementById('apps-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            const currentTheme = html.getAttribute('data-theme');
+            localStorage.setItem('devsoftware-theme', currentTheme);
+            window.location.href = 'apps.html';
+        });
+        
+        document.getElementById('explore-apps').addEventListener('click', function(e) {
+            e.preventDefault();
+            const currentTheme = html.getAttribute('data-theme');
+            localStorage.setItem('devsoftware-theme', currentTheme);
+            window.location.href = 'apps.html';
         });
 
         function checkHash() {

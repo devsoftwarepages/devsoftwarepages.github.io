@@ -137,13 +137,24 @@
     <footer><p>© 2026 Dev Software. All rights reserved.</p></footer>
 
     <script>
+        // Tema yönetimi - localStorage ile kalıcı
         const btn = document.getElementById('theme-toggle');
         const html = document.documentElement;
+        
+        // Kaydedilmiş temayı yükle
+        const savedTheme = localStorage.getItem('devsoftware-theme');
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+            btn.innerHTML = savedTheme === 'dark' ? '☼' : '☾';
+        }
+        
         btn.addEventListener('click', () => {
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
             btn.innerHTML = newTheme === 'dark' ? '☼' : '☾';
+            // Temayı kaydet
+            localStorage.setItem('devsoftware-theme', newTheme);
         });
     </script>
 </body>

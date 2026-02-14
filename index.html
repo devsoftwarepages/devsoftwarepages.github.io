@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev_Software | Premium Apps</title>
+    <title>Dev Software | Premium Mobile Apps</title>
     <style>
         :root {
             --bg: #000000;
@@ -11,129 +11,148 @@
             --text: #ffffff;
             --subtext: #8e8e93;
             --accent: #0071e3;
-            --nav-bg: rgba(0, 0, 0, 0.7);
+            --nav-bg: rgba(0, 0, 0, 0.75);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif; }
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --card-bg: #f5f5f7;
+            --text: #1d1d1f;
+            --subtext: #86868b;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+        }
 
-        body { background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif; }
 
-        /* Navigasyon */
+        body { background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; transition: background 0.3s ease; }
+
+        /* Navigasyon - Arvinapp Style Fix */
         nav {
-            position: fixed; top: 0; width: 100%; height: 60px;
+            position: fixed; top: 0; width: 100%; height: 54px;
             background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             z-index: 1000; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 8%; border-bottom: 0.5px solid rgba(255,255,255,0.1);
+            padding: 0 5%; border-bottom: 0.5px solid rgba(128,128,128,0.2);
         }
 
-        .logo-area { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 20px; }
-        .logo-circle { width: 30px; height: 30px; background: linear-gradient(135deg, #0071e3, #00d4ff); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+        .nav-left { flex: 1; display: flex; gap: 15px; }
+        .nav-left a { text-decoration: none; color: var(--text); font-size: 13px; opacity: 0.7; transition: 0.3s; }
+        
+        /* Merkezdeki Başlık */
+        .nav-center { flex: 2; text-align: center; }
+        .logo-text { font-size: 19px; font-weight: 600; letter-spacing: -0.5px; }
 
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { text-decoration: none; color: var(--text); font-size: 14px; opacity: 0.7; transition: 0.3s; }
-        .nav-links a:hover { opacity: 1; }
+        /* Sağdaki İkon */
+        .nav-right { flex: 1; display: flex; justify-content: flex-end; }
+        #theme-toggle { cursor: pointer; font-size: 18px; border: none; background: none; color: var(--text); padding: 5px; }
 
         /* Hero Section */
         .hero {
-            padding: 160px 20px 80px;
+            padding: 150px 20px 80px;
             text-align: center;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .hero h1 {
             font-size: 52px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1;
-            margin-bottom: 25px; background: linear-gradient(to bottom, #fff 60%, #888);
+            margin-bottom: 20px; background: linear-gradient(180deg, #fff 0%, #a1a1a6 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
+        [data-theme="light"] .hero h1 { -webkit-text-fill-color: var(--text); background: none; }
 
         .hero p {
-            font-size: 20px; color: var(--subtext); line-height: 1.4;
-            max-width: 600px; margin: 0 auto 40px;
+            font-size: 22px; color: var(--subtext); line-height: 1.4;
+            max-width: 600px; margin: 0 auto 40px; font-weight: 500;
         }
 
-        .cta-button {
+        .btn-primary {
             background: var(--accent); color: white;
-            padding: 14px 30px; border-radius: 980px;
+            padding: 12px 28px; border-radius: 980px;
             text-decoration: none; font-size: 17px; font-weight: 500;
-            display: inline-block; transition: 0.3s;
-        }
-        .cta-button:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0,113,227,0.4); }
-
-        /* Neden Seçmelisiniz Section (Arvinapp Birebir) */
-        .features { padding: 40px 8%; text-align: center; }
-        .features h2 { font-size: 36px; margin-bottom: 50px; }
-
-        .feature-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;
+            display: inline-block; transition: 0.3s ease;
         }
 
-        .feature-card {
-            background: var(--card-bg); border-radius: 24px; padding: 50px 30px;
-            transition: 0.3s; border: 1px solid rgba(255,255,255,0.05);
+        /* Features */
+        .features { padding: 40px 8% 100px; }
+        .section-title { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 50px; }
+
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
         }
 
-        .feature-card h3 { font-size: 24px; margin-bottom: 15px; font-weight: 600; }
-        .feature-card p { color: var(--subtext); font-size: 16px; line-height: 1.6; }
+        .card {
+            background: var(--card-bg); border-radius: 22px; padding: 40px 30px;
+            border: 1px solid rgba(128,128,128,0.1); transition: 0.3s ease;
+        }
 
-        /* Footer */
+        .card h3 { font-size: 24px; margin-bottom: 12px; font-weight: 600; }
+        .card p { color: var(--subtext); font-size: 16px; line-height: 1.5; }
+
         footer {
-            padding: 80px 20px; text-align: center;
-            border-top: 0.5px solid rgba(255,255,255,0.1);
-            color: var(--subtext); font-size: 14px; margin-top: 50px;
+            padding: 60px 20px; text-align: center;
+            color: var(--subtext); font-size: 13px; border-top: 0.5px solid rgba(128,128,128,0.1);
         }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 38px; }
-            .nav-links { display: none; }
-            nav { padding: 0 5%; }
+            .nav-left { display: none; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-area">
-            <div class="logo-circle">D</div>
-            <span>Dev_Software</span>
-        </div>
-        <div class="nav-links">
+        <div class="nav-left">
             <a href="#">Home</a>
-            <a href="#">About</a>
             <a href="#">Apps</a>
-            <a href="#">Privacy</a>
-            <a href="#">Contact</a>
         </div>
-        <div style="font-size: 18px;">☀️</div>
+        <div class="nav-center">
+            <div class="logo-text">Dev Software</div>
+        </div>
+        <div class="nav-right">
+            <button id="theme-toggle">🌙</button>
+        </div>
     </nav>
 
     <section class="hero">
         <h1>Crafting Seamless<br>Mobile Experiences.</h1>
         <p>I build intuitive, high-performance applications designed to simplify your life and connect you to what matters most.</p>
-        <a href="#" class="cta-button">Explore My Apps</a>
+        <a href="#" class="btn-primary">Explore My Apps</a>
     </section>
 
     <section class="features">
-        <h2>Why Choose My Apps?</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
+        <h2 class="section-title">Why Choose My Apps?</h2>
+        <div class="grid">
+            <div class="card">
                 <h3>Unparalleled User Experience</h3>
-                <p>Every app is meticulously designed for simplicity and elegance, ensuring a delightful and effortless interaction for all users.</p>
+                <p>Every app is meticulously designed for simplicity and elegance, ensuring a delightful interaction.</p>
             </div>
-            <div class="feature-card">
+            <div class="card">
                 <h3>Powerful & Practical Solutions</h3>
-                <p>I focus on delivering robust, real-world tools that seamlessly integrate into your daily routine, boosting productivity and convenience.</p>
+                <p>Real-world tools that seamlessly integrate into your daily routine, boosting productivity.</p>
             </div>
-            <div class="feature-card">
+            <div class="card">
                 <h3>Commitment to Innovation</h3>
-                <p>Driven by user feedback and emerging technologies, I continuously refine and evolve my applications to stay at the forefront of development.</p>
+                <p>Driven by user feedback, I continuously evolve my applications to stay at the forefront.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 Dev_Software. All rights reserved.</p>
+        <p>© 2026 Dev Software. All rights reserved.</p>
     </footer>
+
+    <script>
+        const btn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        btn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            btn.innerHTML = newTheme === 'dark' ? '🌙' : '☀️';
+        });
+    </script>
 
 </body>
 </html>

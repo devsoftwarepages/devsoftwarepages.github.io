@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Dev Software | Premium Mobile Apps</title>
     <style>
         :root {
@@ -11,7 +11,7 @@
             --text: #ffffff;
             --subtext: #8e8e93;
             --accent: #0071e3;
-            --nav-bg: rgba(0, 0, 0, 0.75);
+            --nav-bg: rgba(28, 28, 30, 0.85); /* Biraz daha koyu ve belirgin arka plan */
         }
 
         [data-theme="light"] {
@@ -19,44 +19,65 @@
             --card-bg: #f5f5f7;
             --text: #1d1d1f;
             --subtext: #86868b;
-            --nav-bg: rgba(255, 255, 255, 0.8);
+            --nav-bg: rgba(255, 255, 255, 0.9);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif; }
 
-        body { background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; transition: background 0.3s ease; }
-
-        /* Navigasyon */
-        nav {
-            position: fixed; top: 0; width: 100%; height: 54px;
-            background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            z-index: 1000; display: flex; align-items: center; 
-            padding: 0 5%; border-bottom: 0.5px solid rgba(128,128,128,0.2);
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            -webkit-font-smoothing: antialiased; 
+            transition: background 0.3s ease; 
         }
 
-        /* Başlık ve Dönen Logo Grubu (Tam Merkezde) */
-        .nav-center { 
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+        /* --- Çift Satırlı Navbar Tasarımı --- */
+        nav {
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            height: auto; /* Yükseklik içeriğe göre ayarlanır */
+            min-height: 90px;
+            background: var(--nav-bg); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000; 
+            padding: 10px 0; /* Üstten alttan boşluk */
+            border-bottom: 0.5px solid rgba(128,128,128,0.1);
+            display: flex;
+            flex-direction: column; /* Alt alta dizilim */
+            justify-content: center;
+        }
+
+        /* 1. SATIR: Logo, İsim ve Theme Toggle */
+        .nav-top {
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Logoyu ortalar */
+            align-items: center;
+            position: relative;
+            margin-bottom: 8px; /* Linklerle arasındaki boşluk */
+            padding: 0 20px;
+        }
+
+        /* Ortadaki Marka Alanı */
+        .brand-area {
             display: flex;
             align-items: center;
             gap: 10px;
-            white-space: nowrap;
         }
 
         .logo-text { 
-            font-size: 19px; 
+            font-size: 20px; 
             font-weight: 600; 
             letter-spacing: -0.5px;
         }
 
-        /* Logo Ayarları ve Dönme Animasyonu */
         .nav-logo {
-            width: 24px;
-            height: 24px;
+            width: 32px; 
+            height: 32px;
             object-fit: contain;
-            animation: rotateLogo 4s linear infinite;
+            animation: rotateLogo 8s linear infinite;
         }
 
         @keyframes rotateLogo {
@@ -64,78 +85,132 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Sağ taraf (Gece/Gündüz Butonu) */
-        .nav-right { 
-            margin-left: auto; 
-            display: flex; 
-            align-items: center; 
+        /* Sağdaki İkon (Absolute ile sağa çivilendi) */
+        .theme-btn-area {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        #theme-toggle { cursor: pointer; font-size: 18px; border: none; background: none; color: var(--text); padding: 5px; }
+        #theme-toggle { 
+            cursor: pointer; 
+            font-size: 20px; 
+            border: none; 
+            background: none; 
+            color: var(--text); 
+            transition: 0.3s; 
+        }
 
-        /* Hero Alanı */
+        /* 2. SATIR: Linkler */
+        .nav-bottom {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px; /* Linkler arası boşluk */
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 15px; /* Okunaklı boyut */
+            font-weight: 400;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+
+        /* --- İçerik Alanları --- */
+        
+        /* Hero Padding Artırıldı (Navbar büyüdüğü için) */
         .hero {
-            padding: 150px 20px 80px;
+            padding: 180px 20px 60px; 
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 52px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1;
-            margin-bottom: 20px; background: linear-gradient(180deg, #fff 0%, #a1a1a6 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 50px; 
+            font-weight: 700; 
+            letter-spacing: -1.2px; 
+            line-height: 1.1;
+            margin-bottom: 20px; 
+            background: linear-gradient(180deg, #fff 0%, #a1a1a6 100%);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
         }
         [data-theme="light"] .hero h1 { -webkit-text-fill-color: var(--text); background: none; }
 
         .hero p {
-            font-size: 22px; color: var(--subtext); line-height: 1.4;
-            max-width: 600px; margin: 0 auto 40px; font-weight: 500;
+            font-size: 20px; color: var(--subtext); line-height: 1.5;
+            max-width: 600px; margin: 0 auto 35px;
         }
 
         .btn-primary {
             background: var(--accent); color: white;
-            padding: 12px 28px; border-radius: 980px;
-            text-decoration: none; font-size: 17px; font-weight: 500;
+            padding: 14px 32px; border-radius: 980px;
+            text-decoration: none; font-size: 16px; font-weight: 500;
             display: inline-block; transition: 0.3s ease;
         }
+        .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 15px rgba(0,113,227,0.3); }
 
         /* Kartlar */
-        .features { padding: 40px 8% 100px; }
-        .section-title { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 50px; }
+        .features { padding: 20px 8% 100px; }
+        .section-title { font-size: 28px; font-weight: 700; text-align: center; margin-bottom: 40px; }
 
         .grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
         }
 
         .card {
-            background: var(--card-bg); border-radius: 22px; padding: 40px 30px;
+            background: var(--card-bg); border-radius: 20px; padding: 35px 25px;
             border: 1px solid rgba(128,128,128,0.1); transition: 0.3s ease;
         }
 
-        .card h3 { font-size: 24px; margin-bottom: 12px; font-weight: 600; }
-        .card p { color: var(--subtext); font-size: 16px; line-height: 1.5; }
+        .card h3 { font-size: 22px; margin-bottom: 10px; font-weight: 600; }
+        .card p { color: var(--subtext); font-size: 15px; line-height: 1.5; }
 
         footer {
-            padding: 60px 20px; text-align: center;
+            padding: 50px 20px; text-align: center;
             color: var(--subtext); font-size: 13px; border-top: 0.5px solid rgba(128,128,128,0.1);
         }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 38px; }
+        /* Mobil Uyum Ayarları */
+        @media (max-width: 480px) {
+            .nav-links { gap: 15px; } /* Mobilde linkler birbirine yaklaşsın */
+            .nav-links a { font-size: 14px; }
+            .hero h1 { font-size: 36px; }
+            .hero { padding-top: 160px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="nav-center">
-            <span class="logo-text">Dev Software</span>
-            <img src="logo.png" alt="Logo" class="nav-logo">
+        <div class="nav-top">
+            <div class="brand-area">
+                <img src="logo.png" alt="Dev Software Logo" class="nav-logo">
+                <span class="logo-text">Dev Software</span>
+            </div>
+            <div class="theme-btn-area">
+                <button id="theme-toggle">☼</button> </div>
         </div>
-        
-        <div class="nav-right">
-            <button id="theme-toggle">🌙</button>
+
+        <div class="nav-bottom">
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Apps</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact</a>
+            </div>
         </div>
     </nav>
 
@@ -175,7 +250,8 @@
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
-            btn.innerHTML = newTheme === 'dark' ? '🌙' : '☀️';
+            // İkon değişimi (Basit Güneş / Ay mantığı)
+            btn.innerHTML = newTheme === 'dark' ? '☼' : '☾';
         });
     </script>
 

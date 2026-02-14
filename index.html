@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dev Software</title>
 
-<meta name="description" content="Dev Software – Independent mobile app developer. Clean, offline-first, privacy-friendly Android apps.">
-
 <style>
 :root{
 --bg:#000;--card:#1c1c1e;--text:#fff;--sub:#8e8e93;--accent:#0071e3;
@@ -16,33 +14,42 @@
 --bg:#fff;--card:#f5f5f7;--text:#1d1d1f;--sub:#86868b;
 --nav:rgba(255,255,255,.9)
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
 body{background:var(--bg);color:var(--text);transition:.3s}
-a{text-decoration:none;color:inherit}
 
 nav{
-position:fixed;top:0;width:100%;z-index:10;
-background:var(--nav);backdrop-filter:blur(20px);
+position:fixed;top:0;width:100%;z-index:1000;
+background:var(--nav);
+backdrop-filter:blur(20px);
 border-bottom:.5px solid rgba(255,255,255,.08);
-padding:14px 0
+padding:16px 0;
+display:flex;flex-direction:column;align-items:center
 }
-.nav-wrap{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:20px}
-.brand img{width:32px;animation:spin 12s linear infinite}
+.nav-top{
+width:100%;display:flex;justify-content:center;align-items:center;
+position:relative;margin-bottom:14px
+}
+.brand{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:600}
+.brand img{width:34px;animation:spin 12s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+.theme-area{position:absolute;right:20px}
+#theme{background:none;border:none;font-size:22px;color:var(--text);cursor:pointer}
 
-.links a{margin-left:18px;font-size:14px;opacity:.7}
-.links a:hover{opacity:1;color:var(--accent)}
-#theme{background:none;border:none;font-size:20px;color:var(--text);cursor:pointer}
+.nav-links{display:flex;gap:20px}
+.nav-links a{
+text-decoration:none;color:var(--text);
+font-size:15px;opacity:.65
+}
+.nav-links a:hover{opacity:1;color:var(--accent)}
 
-section{max-width:1100px;margin:auto;padding:140px 20px}
-.hero{text-align:center;padding-top:160px}
-.hero h1{font-size:42px;margin-bottom:15px}
-.hero p{color:var(--sub);font-size:18px;max-width:600px;margin:auto}
+section{max-width:1100px;margin:auto;padding:170px 20px}
+.hero{text-align:center;padding-top:190px}
+.hero h1{font-size:42px;margin-bottom:14px}
+.hero p{color:var(--sub);font-size:18px;max-width:620px;margin:auto}
 
 .card{
 background:var(--card);border-radius:26px;
-padding:35px;border:1px solid rgba(255,255,255,.08)
+padding:36px;border:1px solid rgba(255,255,255,.08)
 }
 
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
@@ -54,41 +61,41 @@ footer{text-align:center;color:var(--sub);padding:60px 20px;font-size:13px}
 <body>
 
 <nav>
-<div class="nav-wrap">
+<div class="nav-top">
 <div class="brand">
-<img src="logo.png" alt="logo">
+<img src="logo.png">
 <span>Dev Software</span>
 </div>
-<div class="links">
+<div class="theme-area">
+<button id="theme">☼</button>
+</div>
+</div>
+
+<div class="nav-links">
 <a href="#about">About</a>
 <a href="apps.html">Apps</a>
 <a href="#contact">Contact</a>
-<button id="theme">☼</button>
-</div>
 </div>
 </nav>
 
 <section class="hero">
 <h1>Independent App Developer</h1>
-<p>Clean, fast and offline-first Android applications built with simplicity and privacy in mind.</p>
+<p>Clean, offline-first Android applications focused on performance and simplicity.</p>
 </section>
 
 <section id="about">
 <div class="grid">
 <div class="card">
-<h2>Who I Am</h2>
+<h2>About</h2>
 <p style="color:var(--sub);margin-top:12px">
-I am an independent developer focused on creating useful Android apps that work fully offline, respect user privacy and deliver smooth performance.
+Independent developer creating fast, privacy-friendly and fully offline Android apps.
 </p>
 </div>
 
 <div class="card">
-<h2>Focus Areas</h2>
+<h2>Focus</h2>
 <p style="color:var(--sub);margin-top:12px">
-• Android / Flutter<br>
-• Offline-first apps<br>
-• Simple & clean UI<br>
-• Performance oriented
+Flutter · Offline-first · Clean UI · Performance
 </p>
 </div>
 </div>
@@ -98,14 +105,13 @@ I am an independent developer focused on creating useful Android apps that work 
 <div class="card">
 <h2>Contact</h2>
 <p style="color:var(--sub);margin-top:12px">
-For app support or business inquiries:<br><br>
-<b>devsoftwaremail@gmail.com</b>
+devsoftwaremail@gmail.com
 </p>
 </div>
 </section>
 
 <footer>
-© 2026 Dev Software. All rights reserved.
+© 2026 Dev Software
 </footer>
 
 <script>

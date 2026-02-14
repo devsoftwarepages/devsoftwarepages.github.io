@@ -37,7 +37,7 @@ nav{
 .nav-logo{width:32px;height:32px;animation:spin 12s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .theme-btn-area{position:absolute;right:24px}
-#theme-toggle{background:none;border:none;color:var(--text);font-size:20px;cursor:pointer}
+#theme-toggle{background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;line-height:1}
 
 .nav-links{display:flex;gap:24px;list-style:none}
 .nav-links a{text-decoration:none;color:var(--text);opacity:.6;font-size:15px}
@@ -107,65 +107,20 @@ footer{padding:60px 20px;text-align:center;color:var(--subtext);font-size:13px;b
 
 <script>
 const btn = document.getElementById("theme-toggle");
+
+function updateThemeIcon(theme) {
+    btn.innerHTML = theme === "dark" ? "☼" : "☾";
+}
+
+updateThemeIcon(document.documentElement.getAttribute("data-theme") || "dark");
+
 btn.onclick = () => {
-    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("devsoftware-theme", next);
+    updateThemeIcon(next);
 };
 </script>
-</body>
-</html>
-    </div>
-</div>
-<div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="index.html#about">About</a>
-    <a href="apps.html" class="active">Apps</a>
-    <a href="index.html#contact">Contact</a>
-</div>
-</nav>
-
-<header class="apps-header">
-<h1>Apps</h1>
-<p>Carefully crafted Android applications focused on usability and performance.</p>
-</header>
-
-<section class="apps-grid">
-
-<div class="app-card">
-<span class="status-badge">SOON</span>
-<div class="app-icon">📄</div>
-<h3>PDF Reader</h3>
-<p>Fast, offline-first PDF reader with clean interface and efficient file management.</p>
-<div class="store-btn">Coming Soon on Google Play</div>
-</div>
-
-<div class="app-card">
-<span class="status-badge">SOON</span>
-<div class="app-icon">🎓</div>
-<h3>BEP Hazırlama</h3>
-<p>Designed for educators to prepare individualized education programs quickly and clearly.</p>
-<div class="store-btn">Coming Soon on Google Play</div>
-</div>
-
-</section>
-
-<footer>
-<p>© 2026 Dev Software. All rights reserved.</p>
-</footer>
-
-<script>
-const btn=document.getElementById("theme-toggle");
-const html=document.documentElement;
-const saved=localStorage.getItem("devsoftware-theme");
-if(saved) html.setAttribute("data-theme",saved);
-
-btn.onclick=()=>{
-const t=html.getAttribute("data-theme")==="dark"?"light":"dark";
-html.setAttribute("data-theme",t);
-localStorage.setItem("devsoftware-theme",t);
-};
-</script>
-
 </body>
 </html>

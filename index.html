@@ -36,18 +36,17 @@ nav{
 .nav-logo{width:32px;height:32px;animation:spin 12s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .theme-btn-area{position:absolute;right:24px}
-#theme-toggle{background:none;border:none;color:var(--text);font-size:20px;cursor:pointer}
+#theme-toggle{background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;line-height:1;transition: transform .2s}
+#theme-toggle:active{transform:scale(0.8)}
 
 .nav-links{display:flex;gap:24px;list-style:none}
 .nav-links a{text-decoration:none;color:var(--text);opacity:.6;font-size:15px;cursor:pointer}
 .nav-links a.active{opacity:1;color:var(--accent);font-weight:600}
 
-/* PAGE LOGIC */
 .page{display:none;animation:fadeIn .4s ease}
 .page.active-page{display:block}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-/* FOOTER */
 footer{padding:60px 20px;text-align:center;color:var(--subtext);font-size:13px;border-top:1px solid var(--border)}
 
 /* SECTIONS */
@@ -73,23 +72,10 @@ footer{padding:60px 20px;text-align:center;color:var(--subtext);font-size:13px;b
 /* CONTACT */
 .contact-container{padding:180px 20px 100px;max-width:900px;margin:auto;text-align:center}
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px}
-.contact-card{
-    background:var(--card-bg);border-radius:24px;padding:40px;
-    border:1px solid var(--border);text-decoration:none;color:var(--text);
-    transition:transform .3s;display:block
-}
+.contact-card{background:var(--card-bg);border-radius:24px;padding:40px;border:1px solid var(--border);text-decoration:none;color:var(--text);transition:transform .3s;display:block}
 .contact-card:hover{transform:translateY(-5px);border-color:var(--accent)}
-.icon-circle{
-    width:80px;height:80px;border-radius:50%;background:var(--border);
-    display:flex;align-items:center;justify-content:center;margin:0 auto 20px;
-}
-
-/* GÖRSELLER (BÜYÜTÜLDÜ VE FILTRESIZ) */
-.contact-img {
-    width: 48px; /* 36px'den 48px'e çıkarıldı */
-    height: auto;
-    display: block;
-}
+.icon-circle{width:80px;height:80px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.contact-img {width:48px;height:auto;display:block}
 
 @media(max-width:600px){
     .hero h1{font-size:42px}
@@ -151,23 +137,16 @@ footer{padding:60px 20px;text-align:center;color:var(--subtext);font-size:13px;b
     <div class="contact-container">
         <h1>Contact</h1>
         <div class="contact-grid">
-            
             <a class="contact-card" href="mailto:devsoftwaremail@gmail.com">
-                <div class="icon-circle">
-                    <img src="mail.png" class="contact-img">
-                </div>
+                <div class="icon-circle"><img src="mail.png" class="contact-img"></div>
                 <h3>Email</h3>
                 <p>devsoftwaremail@gmail.com</p>
             </a>
-
             <a class="contact-card" target="_blank" href="https://play.google.com/store/apps/dev?id=5510456285364182790">
-                <div class="icon-circle">
-                    <img src="google-play.png" class="contact-img">
-                </div>
+                <div class="icon-circle"><img src="google-play.png" class="contact-img"></div>
                 <h3>Google Play</h3>
                 <p>Developer Page</p>
             </a>
-
         </div>
     </div>
 </div>
@@ -176,10 +155,21 @@ footer{padding:60px 20px;text-align:center;color:var(--subtext);font-size:13px;b
 
 <script>
 const btn = document.getElementById("theme-toggle");
+
+// İkonu güncelleyen fonksiyon
+function updateThemeIcon(theme) {
+    btn.innerHTML = theme === "dark" ? "☼" : "☾";
+}
+
+// İlk açılışta ikonu ayarla
+updateThemeIcon(document.documentElement.getAttribute("data-theme") || "dark");
+
 btn.onclick = () => {
-    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("devsoftware-theme", next);
+    updateThemeIcon(next); // Tıklayınca ikonu değiştir
 };
 
 const pages = document.querySelectorAll(".page");

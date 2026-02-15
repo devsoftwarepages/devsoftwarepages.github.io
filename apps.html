@@ -52,7 +52,27 @@ nav{
 .app-card{background:var(--card-bg);border-radius:24px;padding:35px;border:1px solid var(--border);text-align:center;position:relative;transition:.3s}
 .app-card:hover{transform:translateY(-8px);border-color:var(--accent)}
 
-.app-icon{width:88px;height:88px;margin:0 auto 24px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:42px;background:linear-gradient(135deg,#2c2c2e,#3a3a3c);color:#fff}
+.app-icon{
+width:88px;
+height:88px;
+margin:0 auto 24px;
+border-radius:22px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:42px;
+background:linear-gradient(135deg,#2c2c2e,#3a3a3c);
+color:#fff;
+overflow:hidden;
+}
+
+.app-icon img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:22px;
+}
+
 .status-badge{position:absolute;top:20px;right:20px;background:var(--soon);color:#000;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:800}
 .app-card h3{font-size:24px;margin-bottom:12px}
 .app-card p{color:var(--subtext);font-size:16px;line-height:1.5;margin-bottom:30px}
@@ -70,9 +90,15 @@ footer{padding:60px 20px;text-align:center;color:var(--subtext);font-size:13px;b
 <body>
 <nav>
 <div class="nav-top">
-    <a href="index.html" class="brand-area"><img src="logo.png" class="nav-logo"><span class="logo-text">Dev Software</span></a>
-    <div class="theme-btn-area"><button id="theme-toggle">☼</button></div>
+    <a href="index.html" class="brand-area">
+        <img src="logo.png" class="nav-logo">
+        <span class="logo-text">Dev Software</span>
+    </a>
+    <div class="theme-btn-area">
+        <button id="theme-toggle">☼</button>
+    </div>
 </div>
+
 <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="index.html#about">About</a>
@@ -87,6 +113,8 @@ footer{padding:60px 20px;text-align:center;color:var(--subtext);font-size:13px;b
 </header>
 
 <section class="apps-grid">
+
+    <!-- PDF Reader -->
     <div class="app-card">
         <span class="status-badge">Soon</span>
         <div class="app-icon">📄</div>
@@ -94,16 +122,27 @@ footer{padding:60px 20px;text-align:center;color:var(--subtext);font-size:13px;b
         <p>Fast, offline-first PDF reader with clean interface.</p>
         <div class="store-btn">Coming Soon</div>
     </div>
+
+    <!-- BEP Hazırlama -->
     <div class="app-card">
         <span class="status-badge">Soon</span>
-        <div class="app-icon">🎓</div>
+
+        <div class="app-icon">
+            <img src="bep.png" alt="BEP Hazırlama">
+        </div>
+
         <h3>BEP Hazırlama</h3>
+
         <p>Designed for educators to prepare programs quickly.</p>
+
         <div class="store-btn">Coming Soon</div>
     </div>
+
 </section>
 
-<footer><p>© 2026 Dev Software. All rights reserved.</p></footer>
+<footer>
+<p>© 2026 Dev Software. All rights reserved.</p>
+</footer>
 
 <script>
 const btn = document.getElementById("theme-toggle");
@@ -122,5 +161,6 @@ btn.onclick = () => {
     updateThemeIcon(next);
 };
 </script>
+
 </body>
 </html>

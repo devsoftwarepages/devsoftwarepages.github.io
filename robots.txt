@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Site haritasının yerini belirtir
+Sitemap: https://devsoftwarepages.github.io/sitemap.xml
